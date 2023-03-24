@@ -1,0 +1,722 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3. Campo fluido generado por un manantial aislado en presencia de una esquina &#8212; pyAeroBook</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=12da95d707ffb74b382d" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/03-manantial-esquina/3.Notebook_Manantial+Esquina';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4. Campo fluido generado por tres manantiales alineados dispuestos de forma simétrica" href="../04-manantiales-alineados/4.Notebook_Manantiales-Alineados.html" />
+    <link rel="prev" title="2. Campo fluido generado por un torbellino individual en presencia de una pared" href="../02-torbellino-pared/2.Notebook_Torbellino%2BPared.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../intro.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../intro.html">
+                    pyAero Course
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../01-rankine/1.Notebook_RANKINE.html">1. Teoría potencial linealizada 2D</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../01-rankine/1b.Notebook_RANKINE%20-%20SOL.html">1.2. Teoría potencial linealizada 2D</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../02-torbellino-pared/2.Notebook_Torbellino%2BPared.html">2. Campo fluido generado por un torbellino individual en presencia de una pared</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Campo fluido generado por un manantial aislado en presencia de una esquina</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-manantiales-alineados/4.Notebook_Manantiales-Alineados.html">4. Campo fluido generado por tres manantiales alineados dispuestos de forma simétrica</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/RayleighLord/pyAeroTest" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/RayleighLord/pyAeroTest/issues/new?title=Issue%20on%20page%20%2Fnotebooks/03-manantial-esquina/3.Notebook_Manantial+Esquina.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/notebooks/03-manantial-esquina/3.Notebook_Manantial+Esquina.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Campo fluido generado por un manantial aislado en presencia de una esquina</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-las-imagenes">3.1. Método de las imágenes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-python-para-el-calculo-del-flujo-potencial">3.1.1. Código Python para el cálculo del flujo potencial</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="campo-fluido-generado-por-un-manantial-aislado-en-presencia-de-una-esquina">
+<h1><span class="section-number">3. </span>Campo fluido generado por un manantial aislado en presencia de una esquina<a class="headerlink" href="#campo-fluido-generado-por-un-manantial-aislado-en-presencia-de-una-esquina" title="Permalink to this heading">#</a></h1>
+<p>Suponiendo una configuración como la mostrada en la Figura 1, un manantial de intensidad <span class="math notranslate nohighlight">\(Q\)</span> situado en las coordenadas <span class="math notranslate nohighlight">\((x,z)=(a,b)\)</span> en presencia de una esquina, determinar el campo de velocidades y de presiones, así como las líneas de corriente y valor de la función de corriente <span class="math notranslate nohighlight">\(\Psi\)</span>.</p>
+<p align="center">
+  <img width="200" src=../images/enunciado_manantial_esquina.png>
+<br><b>Figura 1. Manantial en presencia de dos paredes en ángulo recto.</b>
+</p>
+<section id="metodo-de-las-imagenes">
+<h2><span class="section-number">3.1. </span>Método de las imágenes<a class="headerlink" href="#metodo-de-las-imagenes" title="Permalink to this heading">#</a></h2>
+<p>Las líneas de corriente rectas implican una restricción a la velocidad normal a través de ellas, lo que puede interpretarse como una condición de contorno de pared, <span class="math notranslate nohighlight">\(\bar{\mathbf{v}}\cdot\bar{\mathbf{n}}=0\)</span>.
+La resolución de este tipo de configuraciones fluidas puede realizarse mediante la creación de una imagen especular de la distribución de singularidades respecto a la condición de contorno, que actúa así como eje de simetría. En el problema aquí propuesto, esto implica la localización de tres manantiales adicionales con <strong>misma</strong> intensidad, situados de forma simétrica con respecto a las líneas verticales y horizontales que forman las condiciones de contorno iniciales.</p>
+<section id="codigo-python-para-el-calculo-del-flujo-potencial">
+<h3><span class="section-number">3.1.1. </span>Código Python para el cálculo del flujo potencial<a class="headerlink" href="#codigo-python-para-el-calculo-del-flujo-potencial" title="Permalink to this heading">#</a></h3>
+<p>En los siguientes párrafos se presenta una propuesta de cálculo numérico para el modelado discreto del flujo potencial. Existen muchas formas de realizar este cálculo, en este texto se presenta una alternativa sencilla que hace uso del módulo <em>NumPy</em> de Python, así como una representación gráfica de la función de corriente y el campo de velocidades.
+Se parte del código desarrollado inicialmente para el Óvalo de Rankine, y se modifica adecuadamente la función <em>velocity_field</em> para representar el campo fluido generado por cuatro manantiales colocados de forma simétrica respecto a los ejes <span class="math notranslate nohighlight">\(x=0\)</span> y <span class="math notranslate nohighlight">\(z=0\)</span> y de misma intensidad.</p>
+<p>Nótese que en lo que corresponde al texto escrito en este documento, se usan variables en <strong>negrita</strong> para denotar vectores o matrices.</p>
+<p>Junto a este documento se dispone de códigos MatLab o Python para su ejecución independiente, así como del Notebook original.</p>
+<p>Del mismo modo, se puede ejecutar de forma online a través del siguiente enlace: <a class="reference external" href="https://mybinder.org/v2/gh/AMartinezCava/pyAero/HEAD?labpath=3.MANANTIAL+ESQUINA/3.Notebook_Manantial+Esquina.ipynb"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Importación de módulos</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">make_axes_locatable</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2. Definición de las funciones de cálculo del campo de velocidades</span>
+<span class="k">def</span> <span class="nf">velocity_field_source</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">x_s</span><span class="p">,</span> <span class="n">z_s</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calcula el campo de velocidades inducido por una serie finita de manantiales.</span>
+<span class="sd">    </span>
+<span class="sd">    Parámetros:</span>
+<span class="sd">    x, z -- coordenadas en el plano xz. Estas variables pueden ser tanto matrices, como vectores, como puntos discretos.</span>
+<span class="sd">    Q -- magnitud de los manantiales (vector)</span>
+<span class="sd">    x_s, z_s -- coordenadas de los torbellinos (vectores)</span>
+<span class="sd">    </span>
+<span class="sd">    Devuelve:</span>
+<span class="sd">    u, w -- Componentes del campo de velocidades. Será del mismo tipo que la variable de entrada x y z.</span>
+<span class="sd">            Si x y z son matrices, u y w contendrán el campo de velocidades completo. Si son puntos discretos, u y w </span>
+<span class="sd">            contendrán el valor de la velocidad en dichos puntos.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;f8&#39;</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;f8&#39;</span><span class="p">)</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">z</span> <span class="o">-</span> <span class="n">z_s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">u</span> <span class="o">+=</span> <span class="n">Q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x_s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">w</span> <span class="o">+=</span> <span class="n">Q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">z</span> <span class="o">-</span> <span class="n">z_s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">u</span><span class="p">,</span> <span class="n">w</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>La función <em>velocity_field</em> toma como entrada las coordenadas <strong>x</strong> e <strong>z</strong> en el plano xz (nótese que pueden ser tanto matrices o vectores, como puntos discretos), la magnitud <strong>Q</strong> de los manantiales, y las coordenadas <strong>x_s</strong>, <strong>z_s</strong> de las singularidades. La función devuelve las componentes <strong>u</strong> y <strong>w</strong> del campo de velocidades.</p>
+<p>Para calcular las componentes del campo de velocidades, se utiliza un bucle <em>for</em> que considera cada una de las singularidades, y calcula la contribución de cada uno de ellos en las componentes <strong>u</strong> y <strong>w</strong> utilizando la formulación matemática correspondiente (que puede ser deducida analíticamente a partir de los contenidos teóricos de la asignatura).</p>
+<p>Por ejemplo, la formulación matemática utilizada aqui para calcular la velocidad horizontal inducida por un manantial de intensidad <span class="math notranslate nohighlight">\(Q\)</span>, que se encuentra localizado en <span class="math notranslate nohighlight">\((x_s, z_s)\)</span>, en un punto del espacio, <span class="math notranslate nohighlight">\(p\)</span>, situado a una distancia radial <span class="math notranslate nohighlight">\(r\)</span>, es la siguiente:</p>
+<div class="math notranslate nohighlight">
+\[ U = \frac{Q}{2\pi r}\cos{\theta} = \frac{Q}{2\pi r} \frac{(x_p-x_s)}{r}\]</div>
+<p>Podemos utilizar esta función para calcular el campo de velocidades en los distintos ejes del sistema de referencia empleado, tanto a nivel vectorial como a nivel puntual, y usar esos datos para visualizar la solución en un gráfico.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Definimos las coordenadas e intensidad del manantial situado en (x,z)=(a,b)</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="mi">292</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mf">1.2</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">1.3</span>
+
+<span class="c1"># Aplicamos el método de las imágenes. Se puede generar un vector unidad y multiplicar por el valor escalar Q</span>
+<span class="n">Q_v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">*</span><span class="n">Q</span>
+<span class="n">x_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="o">-</span><span class="n">a</span><span class="p">,</span> <span class="n">a</span><span class="p">])</span>
+<span class="n">z_s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">b</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="o">-</span><span class="n">b</span><span class="p">,</span> <span class="o">-</span><span class="n">b</span><span class="p">])</span>
+
+<span class="c1"># Se definen también sus coordenadas en el plano complejo, para el cálculo del potencial.</span>
+<span class="n">t_s</span> <span class="o">=</span> <span class="n">x_s</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">z_s</span>
+<span class="n">num_sources</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">Q_v</span><span class="p">)</span>
+
+<span class="c1"># Definimos una malla para las coordenadas x e z</span>
+<span class="n">nx</span><span class="p">,</span> <span class="n">nz</span> <span class="o">=</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">nz</span><span class="p">)</span>
+<span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="n">Tm</span> <span class="o">=</span> <span class="n">Xm</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">Zm</span>
+
+<span class="c1"># Calculamos las componentes u y v del campo de velocidades inducido por los manantiales o sumideros</span>
+<span class="n">u</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="n">velocity_field_source</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">Q_v</span><span class="p">,</span> <span class="n">x_s</span><span class="p">,</span> <span class="n">z_s</span><span class="p">)</span>
+
+<span class="c1"># Construimos la funcion potencial</span>
+<span class="n">pot</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_sources</span><span class="p">):</span>
+    <span class="n">pot</span> <span class="o">+=</span> <span class="n">Q_v</span><span class="p">[</span><span class="n">s</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Tm</span> <span class="o">-</span> <span class="n">t_s</span><span class="p">[</span><span class="n">s</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="c1"># De la función potencial extraemos tanto el potencial de velocidades (Phi) como la función de corriente (Psi)</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="n">pot</span><span class="o">.</span><span class="n">real</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="n">pot</span><span class="o">.</span><span class="n">imag</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Una vez calculados el campo de velocidades, se calcula la función potencial de la forma habitual. Se recuerda que <span class="math notranslate nohighlight">\(f(t) = \Phi - i\Psi\)</span>, por lo que tras construir <span class="math notranslate nohighlight">\(f(t)\)</span> es sencillo extraer tanto el potencial de velocidades, <span class="math notranslate nohighlight">\(\Phi\)</span>, como la función de corriente, <span class="math notranslate nohighlight">\(\Psi\)</span>.</p>
+<p>Tras la fase de cálculo, es conveniente representar gráficamente la solución. Para ello hacemos uso de las funciones <em>contourf</em> y <em>contour</em> de Matplotlib, para representar el campo de la Función Potencial (<span class="math notranslate nohighlight">\(\Phi\)</span>), la Función de Corriente (<span class="math notranslate nohighlight">\(\Psi\)</span>), y la línea de corriente correspondiente a <span class="math notranslate nohighlight">\(\Psi=0\)</span>.</p>
+<p>Por último, empleamos la función <em>quiver</em> para representar el campo de velocidades vectorial de forma más visual. Por defecto, esta función representa la longitud de los vectores de forma inversa a su magnitud, por lo que aquí se realiza una normalización previa.
+Aunque sabemos que <span class="math notranslate nohighlight">\(\dot{f}(t)= \Phi_x - i \Phi_z = U - iW\)</span>, disponemos del campo de velocidades calculado previamente, en las variables <strong>u</strong> y <strong>w</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualizamos la función de corriente y la función potencial</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>                        <span class="c1"># Creamos la figura</span>
+<span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>         
+
+<span class="n">dividerPSI</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax1</span><span class="p">)</span>                                  <span class="c1"># Ajustamos la posición de la barra de niveles</span>
+<span class="n">caxPSI</span> <span class="o">=</span> <span class="n">dividerPSI</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;5%&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">cont</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>                       <span class="c1"># Pintamos los contornos</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span> <span class="c1"># Representamos la línea de corriente psi=0    </span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cont</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">caxPSI</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>                 <span class="c1"># Pintamos la barra de niveles</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Función de corriente $\Psi$&#39;</span><span class="p">)</span>
+
+<span class="n">dividerPHI</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax2</span><span class="p">)</span>                                  <span class="c1"># Ajustamos la posición de la barra de niveles</span>
+<span class="n">caxPHI</span> <span class="o">=</span> <span class="n">dividerPHI</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;5%&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">cont</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;bwr&#39;</span><span class="p">)</span>                       <span class="c1"># Pintamos los contornos</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span> <span class="c1"># Representamos la línea de corriente psi=0    </span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cont</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">caxPHI</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>                 <span class="c1"># Pintamos la barra de niveles</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Función Potencial $\Phi$&#39;</span><span class="p">)</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>                                           
+<span class="n">ax1</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">u</span><span class="o">/</span><span class="n">N</span><span class="p">,</span> <span class="n">w</span><span class="o">/</span><span class="n">N</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>                                 <span class="c1"># Representamos el campo vectorial normalizado</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">u</span><span class="o">/</span><span class="n">N</span><span class="p">,</span> <span class="n">w</span><span class="o">/</span><span class="n">N</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>     
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>                                                 <span class="c1"># Etiquetamos de forma apropiada, y mostramos en pantalla</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/1673e0e631567f5b092068c6b38572fa9ad347c131def6593ecfa83ec2035db7.png" src="../../_images/1673e0e631567f5b092068c6b38572fa9ad347c131def6593ecfa83ec2035db7.png" />
+</div>
+</div>
+<p>La representación de la línea de corriente correspondiente a <span class="math notranslate nohighlight">\(\Psi=0\)</span> permite, en este caso, visualizar los puntos de remanso de la configuración propuesta.
+Se recomienda jugar con la posición de los manantiales para observar la variación de éstos (inclusive la formación del punto de remanso triple si el manantial original está equidistante de las condiciones de contorno).</p>
+<p>Vale la pena mencionar que la representación “indiscriminada” de líneas de corriente puede jugar aquí un flaco favor. Téngase en cuenta la definición de la función <span class="math notranslate nohighlight">\(\Psi\)</span> para un manantial situado en <span class="math notranslate nohighlight">\((x_m, z_m)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[f(t) = \frac{Q}{2\pi}\ln{t} = \frac{Q}{2\pi}\ln{r\exp{i\theta}} = \frac{Q}{2\pi}(\ln{r} + i\theta) = \Phi + i\Psi \]</div>
+<div class="math notranslate nohighlight">
+\[ \Psi = \frac{Q}{2\pi}\theta = \frac{Q}{2\pi} \arctan{\left( \frac{z-z_m}{x-x_m} \right) }\]</div>
+<p>Bajo esta definición, aparece una discontinuidad para <span class="math notranslate nohighlight">\(\theta=\pi\)</span>, como se muestra tanto en el siguiente gráfico como en la Figura 2, que provoca la aglomeración de líneas de corriente horizontales. Éste fenómeno, que ocurre tanto al aplicarse la función numérica <em>atan</em> como <em>atan2</em> para el cálculo de la arcotangente, es observable también para el óvalo de Rankine, aunque en ese caso las líneas de corriente se aglomeran entre el manantial y el sumidero.</p>
+<p align="center">
+  <img width="400" src=../images/Atan_diagram.png>
+  <img width="400" src=../images/Atan2_diagram.png>
+<br><b>Figura 2. Discontinuidad de la función arcotangente, según su definición numérica. Imagen izquierda, representación de la función <i>atan</i>. Imagen derecha, representación de la función <i>atan2</i>.</b>
+</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualizamos la función de corriente en una proyección tridimensional</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="s2">&quot;3d&quot;</span><span class="p">})</span>
+<span class="n">surf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">bwr</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Función de Corriente $\Psi$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\Psi$&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Visualizamos la función de corriente en una proyección tridimensional</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;projection&quot;</span><span class="p">:</span> <span class="s2">&quot;3d&quot;</span><span class="p">})</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">surf</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">psi</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cm</span><span class="o">.</span><span class="n">bwr</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.2</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">surf</span><span class="p">,</span> <span class="n">shrink</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Función de Corriente $\Psi$&#39;</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;cm&#39; is not defined
+</pre></div>
+</div>
+<img alt="../../_images/4d788548f9f6a8fcca5e715cac932eea4e6f0f1a9d3f4fb13ca140d2815c813e.png" src="../../_images/4d788548f9f6a8fcca5e715cac932eea4e6f0f1a9d3f4fb13ca140d2815c813e.png" />
+</div>
+</div>
+<p>De forma similar al proceso antes realizado, podríamos representar el campo de velocidades tanto horizontal como vertical:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualizamos el campo de velocidades</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span> 
+<span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>                                             <span class="c1"># Creamos la figura, con dos plots integrados</span>
+
+<span class="n">dividerU</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax1</span><span class="p">)</span>                                   <span class="c1"># Ajustamos la posición de la barra de niveles en U</span>
+<span class="n">caxU</span> <span class="o">=</span> <span class="n">dividerU</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;5%&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">dividerV</span> <span class="o">=</span> <span class="n">make_axes_locatable</span><span class="p">(</span><span class="n">ax2</span><span class="p">)</span>                                   <span class="c1"># Ajustamos la posición de la barra de niveles en W</span>
+<span class="n">caxV</span> <span class="o">=</span> <span class="n">dividerV</span><span class="o">.</span><span class="n">append_axes</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;5%&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Velocidad horizontal $\Phi_x$&#39;</span><span class="p">)</span>
+<span class="n">cont</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hot&#39;</span><span class="p">)</span>                        <span class="c1"># Pintamos los contornos de U</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>   <span class="c1"># Representamos lineas de isocontornos</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cont</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">caxU</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>                  <span class="c1"># Pintamos la barra de niveles</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Velocidad vertical $-\Phi_z$&#39;</span><span class="p">)</span>
+<span class="n">cont</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;hot&#39;</span><span class="p">)</span>                        <span class="c1"># Pintamos los contornos</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">Xm</span><span class="p">,</span> <span class="n">Zm</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;black&#39;</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>   <span class="c1"># Representamos la línea de corriente psi=0    </span>
+<span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cont</span><span class="p">,</span> <span class="n">cax</span><span class="o">=</span><span class="n">caxV</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>                  <span class="c1"># Pintamos la barra de niveles</span>
+
+<span class="c1"># ax1.quiver(Xm, Zm, u/N, w/N, scale=50)                                # Representamos el campo vectorial normalizado</span>
+<span class="c1"># ax2.quiver(Xm, Zm, u/N, w/N, scale=50)    </span>
+
+<span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>                                                <span class="c1"># Etiquetamos de forma apropiada, y mostramos en pantalla</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">)</span>
+    <span class="c1">#ax.set(xlim=(-3, -1), ylim=(-1, 1))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s1">&#39;equal&#39;</span><span class="p">,</span><span class="s1">&#39;box&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/58dcdeedea3df066f24eebc2737ea4a6b51a37af3e997be9035867977b8a8442.png" src="../../_images/58dcdeedea3df066f24eebc2737ea4a6b51a37af3e997be9035867977b8a8442.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks/03-manantial-esquina"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02-torbellino-pared/2.Notebook_Torbellino%2BPared.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Campo fluido generado por un torbellino individual en presencia de una pared</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../04-manantiales-alineados/4.Notebook_Manantiales-Alineados.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Campo fluido generado por tres manantiales alineados dispuestos de forma simétrica</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metodo-de-las-imagenes">3.1. Método de las imágenes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-python-para-el-calculo-del-flujo-potencial">3.1.1. Código Python para el cálculo del flujo potencial</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            <div class="bd-footer-content__inner">
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By pyAero
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div></div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=12da95d707ffb74b382d"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=12da95d707ffb74b382d"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.10.10/x64/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/opt/hostedtoolcache/Python/3.10.10/x64/lib/python3.10/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/opt/hostedtoolcache/Python/3.10.10/x64/lib/python3.10/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/opt/hostedtoolcache/Python/3.10.10/x64/lib/python3.10/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+  File "/opt/hostedtoolcache/Python/3.10.10/x64/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/opt/hostedtoolcache/Python/3.10.10/x64/lib/python3.10/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/opt/hostedtoolcache/Python/3.10.10/x64/lib/python3.10/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.10.10/x64/lib/python3.10/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Visualizamos la función de corriente en una proyección tridimensional
+fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+surf = ax.plot_surface(Xm, Zm, psi, cmap=cm.bwr, linewidth=1.2)
+fig.colorbar(surf, shrink=0.8, aspect=10, location="left")
+ax.set_title(r'Función de Corriente $\Psi$')
+ax.set_xlabel('X')
+ax.set_ylabel('Z')
+ax.set_zlabel(r'$\Psi$')
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[5], line 3[0m
+[1;32m      1[0m [38;5;66;03m# Visualizamos la función de corriente en una proyección tridimensional[39;00m
+[1;32m      2[0m fig, ax [38;5;241m=[39m plt[38;5;241m.[39msubplots(subplot_kw[38;5;241m=[39m{[38;5;124m"[39m[38;5;124mprojection[39m[38;5;124m"[39m: [38;5;124m"[39m[38;5;124m3d[39m[38;5;124m"[39m})
+[0;32m----> 3[0m surf [38;5;241m=[39m ax[38;5;241m.[39mplot_surface(Xm, Zm, psi, cmap[38;5;241m=[39m[43mcm[49m[38;5;241m.[39mbwr, linewidth[38;5;241m=[39m[38;5;241m1.2[39m)
+[1;32m      4[0m fig[38;5;241m.[39mcolorbar(surf, shrink[38;5;241m=[39m[38;5;241m0.8[39m, aspect[38;5;241m=[39m[38;5;241m10[39m, location[38;5;241m=[39m[38;5;124m"[39m[38;5;124mleft[39m[38;5;124m"[39m)
+[1;32m      5[0m ax[38;5;241m.[39mset_title([38;5;124mr[39m[38;5;124m'[39m[38;5;124mFunción de Corriente $[39m[38;5;124m\[39m[38;5;124mPsi$[39m[38;5;124m'[39m)
+
+[0;31mNameError[0m: name 'cm' is not defined
+NameError: name 'cm' is not defined
+
